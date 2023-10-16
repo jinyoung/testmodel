@@ -1,0 +1,193 @@
+---
+openapi: 3.0.2
+info:
+  title: Inventory
+  version: 0.0.1
+  description: API definition of inventory
+  contact:
+    name: creator's name
+    url: 'http://creator.homepage.address'
+    email: creator@creator.com
+  license:
+    name: MIT License
+    url: 'https://opensource.org/licenses/MIT'
+paths:
+  /inventories:
+    summary: Global operations on inventories
+    get:
+      tags:
+        - inventories
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Inventory'
+              examples:
+                inventories_json:
+                  value:
+                    - id: 1
+                      stock: 1
+          description: Get list of inventories
+      operationId: GetInventory
+      summary: Get list of inventories
+  '/inventories/{id}':
+    summary: Specific operation on inventories
+    get:
+      parameters:
+        - examples:
+            '1':
+              value: 1
+          name: id
+          description: Inventory name
+          schema:
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+              examples:
+                '1':
+                  value:
+                    id: 1
+                    stock: 1
+          description: inventories with specified id
+      operationId: GetInventoryById
+      summary: Get Inventory by id
+      description: Get Inventory by id
+    patch:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+            examples:
+              '1':
+                value:
+                  id: 1
+                  stock: 1
+        required: true
+      parameters:
+        - examples:
+            '1':
+              value: 1
+          name: id
+          description: Inventory name
+          schema:
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+              examples:
+                '1':
+                  value:
+                    id: 1
+                    stock: 1
+          description: Changed Inventory
+      operationId: PatchInventory
+      summary: Patch existing Inventory
+    parameters:
+      - name: id
+        description: Inventory id
+        schema:
+          type: integer
+        in: path
+        required: true
+  '/inventories/{id}/update':
+    summary: update operation on inventories
+    get:
+      parameters:
+        - name: productId
+          description: ProductId
+          schema:
+            type: integer
+          in: query
+          required: false
+        - name: qty
+          description: Qty
+          schema:
+            type: integer
+          in: query
+          required: false
+        - name: null
+          description: null
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: null
+          description: null
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+              examples:
+                '1':
+                  value:
+                    id: 1
+                    stock: 1
+          description: Update Operation
+      operationId: Update
+      summary: Update
+      description: Update
+  /inventories/search/findInventory:
+    summary: findInventory query on inventories
+    get:
+      parameters:
+        - name: name
+          description: Name
+          schema:
+            type: integer
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+              examples:
+                '1':
+                  value:
+                    id: 1
+                    stock: 1
+          description: FindInventory Query
+      operationId: FindInventory
+      summary: FindInventory
+      description: FindInventory
+components:
+  schemas:
+    Inventory:
+      title: Root Type for Inventory
+      description: The root of the Inventory type's schema.
+      type: object
+      properties:
+        id:
+          description: id of this Inventory
+          type: integer
+        stock:
+          description: stock of this Inventory
+          type: integer
+      example:
+        id: 1
+        stock: 1
+tags:
+  - name: Inventory
+    description: Inventory resource
