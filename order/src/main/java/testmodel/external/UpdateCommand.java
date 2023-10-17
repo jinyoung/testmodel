@@ -10,6 +10,5 @@ public class UpdateCommand {
 
     private Long productId;
     private Integer qty;
-    private  ;
-    private  ;
+
 }

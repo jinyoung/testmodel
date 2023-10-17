@@ -30,9 +30,11 @@ public class Order {
 
         testmodel.external.UpdateCommand updateCommand = new testmodel.external.UpdateCommand();
         // mappings goes here
-        OrderApplication.applicationContext
+        Object rtn = OrderApplication.applicationContext
             .getBean(testmodel.external.InventoryService.class)
-            .update(/* get???(), */updateCommand);
+            .update(Long.valueOf(getProductId()), updateCommand);
+
+        System.out.println(rtn);
 
         OrderPlaced orderPlaced = new OrderPlaced(this);
         orderPlaced.publishAfterCommit();

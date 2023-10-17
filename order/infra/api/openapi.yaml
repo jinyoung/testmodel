@@ -1,6 +1,6 @@
 ---
 paths:
-  /inventories/{productId}/update:
+  '/inventories/{id}/update':
     summary: decrease stock operation on inventories
     put:
       requestBody:
@@ -16,18 +16,32 @@ paths:
                   description: qty of this DecreaseStock
                   type: integer
             examples:
-              '0':
+              Example 0:
                 value:
                   productId: 123
                   qty: 10
-              '1':
+              Example 1:
                 value:
                   productId: 456
                   qty: 50
-              '2':
+              Example 2:
                 value:
                   productId: 789
                   qty: 150
+      parameters:
+        - name: id
+          description: DecreaseStock name
+          schema:
+            type: integer
+          in: path
+          required: true
+          examples:
+            Example 0:
+              value: 123
+            Example 1:
+              value: 456
+            Example 2:
+              value: 789
       responses:
         '200':
           content:
@@ -35,15 +49,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/Inventory'
               examples:
-                '0':
+                Example 0:
                   value:
                     stock: 20
                     productId: 123
-                '1':
+                Example 1:
                   value:
                     stock: 30
                     productId: 456
-                '2':
+                Example 2:
                   value:
                     stock: 30
                     productId: 789
@@ -97,7 +111,33 @@ paths:
           description: Get list of inventories
       operationId: GetInventory
       summary: Get list of inventories
-  /inventories/{id}:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+            examples:
+              '1':
+                value:
+                  productId: 1
+                  stock: 1
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+              examples:
+                '1':
+                  value:
+                    productId: 1
+                    stock: 1
+          description: Changed Inventory
+      operationId: Post Inventory
+      summary: Post Inventory
+  '/inventories/{id}':
     summary: Specific operation on inventories
     get:
       parameters:

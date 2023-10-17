@@ -7,7 +7,6 @@ import testmodel.infra.AbstractEvent;
 
 @Data
 @ToString
-@NoArgConstructor
 public class OrderPlaced extends AbstractEvent {
 
     private Long id;

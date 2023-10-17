@@ -7,7 +7,6 @@ import testmodel.infra.AbstractEvent;
 
 @Data
 @ToString
-@NoArgConstructor
 public class OrderRefused extends AbstractEvent {
 
     private Long id;

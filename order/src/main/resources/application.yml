@@ -41,7 +41,7 @@ logging:
 
 api:
   url:
-    inventory: localhost:8083
+    inventory: localhost:8080/rest/Inventory/0.0.1
     order: localhost:8082
 
 
