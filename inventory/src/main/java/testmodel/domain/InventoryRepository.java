@@ -14,11 +14,11 @@ import testmodel.domain.*;
 )
 public interface InventoryRepository
     extends PagingAndSortingRepository<Inventory, Long> {
-    @Query(
-        value = "select inventory " +
-        "from Inventory inventory " +
-        "where (:name is null or inventory.name like %:name%) and true"
-    )
-    List<Inventory> findByFindInventory(Long name, Pageable pageable);
+    // @Query(
+    //     value = "select inventory " +
+    //     "from Inventory inventory " +
+    //     "where (:name is null or inventory.name like %:name%) and true"
+    // )
+    // List<Inventory> findByFindInventory(Long name, Pageable pageable);
 }
 //>>> PoEAA / Repository
